@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'dispositivo/:id',
     loadChildren: () => import('./dispositivo/dispositivo.module').then( m => m.DispositivoPageModule)
   },
+  {
+    path: 'detalle-sensor/:id',
+    loadChildren: () => import('./detalle-sensor/detalle-sensor.module').then( m => m.DetalleSensorPageModule)
+  },
+  {
+    path: 'log-sensor/:id',
+    loadChildren: () => import('./log-sensor/log-sensor.module').then( m => m.LogSensorPageModule)
+  },
+  {
+    path: 'log-ev/:id',
+    loadChildren: () => import('./log-ev/log-ev.module').then( m => m.LogEvPageModule)
+  },
 ];
 
 @NgModule({
