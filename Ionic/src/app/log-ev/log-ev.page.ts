@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Medicion } from '../model/Medicion';
-import { MedicionService } from '../services/medicion.service';
+import { Riego } from '../model/Riego';
+import { RiegoService } from '../services/riego.service';
 
 @Component({
   selector: 'app-log-ev',
@@ -10,12 +10,13 @@ import { MedicionService } from '../services/medicion.service';
 })
 export class LogEvPage implements OnInit {
 
-  private valorObtenido:number=0;
+
   public idDispositivo:String;
-  public medicion:Medicion;
+  public riegoArray:Riego[];
 
 
-  constructor(private router:ActivatedRoute, private mServ:MedicionService) { 
+
+  constructor(private router:ActivatedRoute, private mServ:RiegoService) { 
 
   }
 
@@ -26,11 +27,12 @@ export class LogEvPage implements OnInit {
 
   async ionViewWillEnter() {
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.medicion = await this.mServ.getMedicionByIdDispositivo(this.idDispositivo);
-    
-    this.valorObtenido = this.medicion.valor;
-    console.log(this.valorObtenido);
-    
+    this.riegoArray = await this.mServ.getRiegosByIdDispositivo(this.idDispositivo);
+    console.log(this.idDispositivo)
+    console.log(this.riegoArray.length)
+
   }
 
 }
+
+

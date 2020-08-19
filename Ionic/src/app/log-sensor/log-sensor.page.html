@@ -10,5 +10,20 @@
 </ion-header>
 
 <ion-content>
-<p>log sensor</p>
+  <ion-grid class="ion-align-items-center">
+    <ion-row >
+      <ion-col>Id del Dispositivo</ion-col>
+      <ion-col>Fecha</ion-col>
+      <ion-col>Id de la medición</ion-col>
+      <ion-col>Valor</ion-col>  
+    </ion-row>
+
+    <ion-row  *ngFor="let med of this.medicionArray">
+      <ion-col>{{med.dispositivoId}}</ion-col>   
+      <ion-col>{{med.fecha}}</ion-col>     
+      <ion-col>{{med.medicionId}}</ion-col>    
+      <ion-col>{{med.valor}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

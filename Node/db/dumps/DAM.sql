@@ -117,6 +117,15 @@ INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp
 INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp(),61,5 );
 INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp(),12,2 );
 
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),1 );
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),2 );
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),3 );
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),4 );
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),5 );
+INSERT INTO DAM.Log_Riegos (apertura,fecha,electrovalvulaId) VALUES (0,current_timestamp(),6 );
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

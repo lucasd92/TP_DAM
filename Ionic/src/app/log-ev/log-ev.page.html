@@ -10,5 +10,19 @@
 </ion-header>
 
 <ion-content>
-  <p>log ev</p>
+  <ion-grid class="ion-align-items-center">
+    <ion-row >
+      <ion-col>Id de Ev</ion-col>
+      <ion-col>Fecha</ion-col>
+      <ion-col>Id de la medición</ion-col>
+      <ion-col>Estado (0 cerrado, 1 abierto)</ion-col>  
+    </ion-row>
+
+    <ion-row  *ngFor="let rie of this.riegoArray">
+      <ion-col>{{rie.electrovalvulaId}}</ion-col>   
+      <ion-col>{{rie.fecha}}</ion-col>     
+      <ion-col>{{rie.logRiegoId}}</ion-col>    
+      <ion-col>{{rie.apertura}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

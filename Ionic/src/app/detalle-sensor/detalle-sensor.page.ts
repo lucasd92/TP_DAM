@@ -2,10 +2,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Medicion } from '../model/Medicion';
+import { Riego } from '../model/Riego';
 import { MedicionService } from '../services/medicion.service';
 
 
 import * as Highcharts from 'highcharts';
+import { RiegoService } from '../services/riego.service';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
 require('highcharts/modules/solid-gauge')(Highcharts);
@@ -22,9 +24,11 @@ export class DetalleSensorPage implements OnInit {
   private chartOptions;
   public idDispositivo:String;
   public medicion:Medicion;
+  public riego:Riego;
   public Accionar_EV:String = 'Abrir';
+  public Estado_EV:number = 0;
 
-  constructor(private router:ActivatedRoute, private mServ:MedicionService) { 
+  constructor(private router:ActivatedRoute, private mServ:MedicionService, private rServ:RiegoService) { 
 
   }
 
@@ -33,21 +37,71 @@ export class DetalleSensorPage implements OnInit {
     
   }
 
-  switchEV(){
-    if(this.Accionar_EV == 'Abrir')
+  async switchEV(){
+    let current_datetime = new Date()
+    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
+    this.valorObtenido = Math.round(Math.random()*100);
+
+    if(this.Accionar_EV == 'Abrir'){
+      // Invierto estado del botón
       this.Accionar_EV = 'Cerrar';
-    else
+
+    }
+
+    else{
+      // Invierto estado del botón
       this.Accionar_EV = 'Abrir';
+
+      // Loggueo medición
+      let a : Medicion= new Medicion(99,formatted_date,+this.valorObtenido,this.idDispositivo);
+      
+      await this.mServ.agregarMedicion(a);
+
+      // Actualizo Chart
+      this.myChart.update({series: [{
+        name: 'kPA',
+        data: [+this.valorObtenido],
+        tooltip: {
+            valueSuffix: ' kPA'
+        }
+      }]});
+    }
+    if(this.Estado_EV)
+      this.Estado_EV = 0;
+    else
+      this.Estado_EV = 1;
+
+    let r : Riego = new Riego(99,formatted_date,this.Estado_EV,this.riego.electrovalvulaId);
+
+    this.rServ.agregarRiego(r);
 
   }
 
   async ionViewWillEnter() {
+    // Asigno un objeto por si la tabla no está poblada
+    //this.riego = new Riego(99,99,0,1);
+    //Para un determinado ID
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
+    // Busco la última medición
     this.medicion = await this.mServ.getMedicionByIdDispositivo(this.idDispositivo);
+    // y el último log de riego
+    this.riego = await this.rServ.getRiegoByIdDispositivo(this.idDispositivo);
     
+    // Cargo el valor en una variable para mostrar
     this.valorObtenido = this.medicion.valor;
     console.log(this.valorObtenido);
+
+    // Veo estado de EV según último Log
+    this.Estado_EV = this.riego.apertura;
     
+    // Si está abierta, la acción del botń es cerrar
+    if(this.Estado_EV)
+      this.Accionar_EV = 'Cerrar';
+    else
+      this.Accionar_EV = 'Abrir';
+
+
+    // Genero Chart
     this.generarChart();
     
     this.myChart.update({series: [{

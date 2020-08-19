@@ -12,7 +12,8 @@ export class LogSensorPage implements OnInit {
 
   private valorObtenido:number=0;
   public idDispositivo:String;
-  public medicion:Medicion;
+  public medicionArray:Medicion[];
+
 
 
   constructor(private router:ActivatedRoute, private mServ:MedicionService) { 
@@ -26,12 +27,13 @@ export class LogSensorPage implements OnInit {
 
   async ionViewWillEnter() {
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.medicion = await this.mServ.getMedicionByIdDispositivo(this.idDispositivo);
-    
-    this.valorObtenido = this.medicion.valor;
-    console.log(this.valorObtenido);
-    
+    this.medicionArray = await this.mServ.getMedicionesByIdDispositivo(this.idDispositivo);
+    console.log(this.idDispositivo)
+    console.log(this.medicionArray.length)
+
   }
+
+
 
 }
 
