@@ -44,7 +44,7 @@ export class DetalleSensorPage implements OnInit {
     
     // Calculo valor aleatorio entre 0 y 100
     this.valorObtenido = Math.round(Math.random()*100);
-    console.log(formatted_date);
+    
     if(this.Accionar_EV == 'Abrir'){
       // Invierto estado del botón
       this.Accionar_EV = 'Cerrar';
@@ -90,10 +90,9 @@ export class DetalleSensorPage implements OnInit {
     this.medicion = await this.mServ.getMedicionByIdDispositivo(this.idDispositivo);
     // y el último log de riego
     this.riego = await this.rServ.getRiegoByIdDispositivo(this.idDispositivo);
-    
+  
     // Cargo el valor en una variable para mostrar
     this.valorObtenido = this.medicion.valor;
-    console.log(this.valorObtenido);
 
     // Veo estado de EV según último Log
     this.Estado_EV = this.riego.apertura;
@@ -189,7 +188,6 @@ export class DetalleSensorPage implements OnInit {
 
     };
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
-    console.log('chart');
   }
 
 }

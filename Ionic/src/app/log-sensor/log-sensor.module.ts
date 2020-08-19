@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { LogSensorPageRoutingModule } from './log-sensor-routing.module';
-
+import { DatePipe } from '../pipes/date-pipe.pipe';
 import { LogSensorPage } from './log-sensor.page';
 
 @NgModule({
@@ -15,6 +15,6 @@ import { LogSensorPage } from './log-sensor.page';
     IonicModule,
     LogSensorPageRoutingModule
   ],
-  declarations: [LogSensorPage]
+  declarations: [LogSensorPage,DatePipe]
 })
 export class LogSensorPageModule {}

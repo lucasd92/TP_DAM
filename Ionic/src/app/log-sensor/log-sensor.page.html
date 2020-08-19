@@ -20,7 +20,7 @@
 
     <ion-row  *ngFor="let med of this.medicionArray">
       <ion-col>{{med.dispositivoId}}</ion-col>   
-      <ion-col>{{med.fecha}}</ion-col>     
+      <ion-col>{{med.fecha | datePipe}}</ion-col>     
       <ion-col>{{med.medicionId}}</ion-col>    
       <ion-col>{{med.valor}}</ion-col>
     </ion-row>

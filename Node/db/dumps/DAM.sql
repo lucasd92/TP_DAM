@@ -5,12 +5,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema DAM
 -- -----------------------------------------------------
-
+SET time_zone = "-03:00";
 -- -----------------------------------------------------
 -- Schema DAM
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `DAM` DEFAULT CHARACTER SET utf8 ;
 USE `DAM` ;
+
 
 
 DROP TABLE IF EXISTS `DAM`.`Mediciones` ;

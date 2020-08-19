@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { LogEvPageRoutingModule } from './log-ev-routing.module';
-
+import { DatePipe } from '../pipes/date-pipe.pipe';
 import { LogEvPage } from './log-ev.page';
 
 @NgModule({
@@ -15,6 +15,6 @@ import { LogEvPage } from './log-ev.page';
     IonicModule,
     LogEvPageRoutingModule
   ],
-  declarations: [LogEvPage]
+  declarations: [LogEvPage,DatePipe]
 })
 export class LogEvPageModule {}

@@ -20,7 +20,7 @@
 
     <ion-row  *ngFor="let rie of this.riegoArray">
       <ion-col>{{rie.electrovalvulaId}}</ion-col>   
-      <ion-col>{{rie.fecha}}</ion-col>     
+      <ion-col>{{rie.fecha | datePipe}}</ion-col>     
       <ion-col>{{rie.logRiegoId}}</ion-col>    
       <ion-col>{{rie.apertura}}</ion-col>
     </ion-row>

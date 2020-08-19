@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Medicion } from '../model/Medicion';
 import { MedicionService } from '../services/medicion.service';
@@ -8,29 +8,20 @@ import { MedicionService } from '../services/medicion.service';
   templateUrl: './log-sensor.page.html',
   styleUrls: ['./log-sensor.page.scss'],
 })
-export class LogSensorPage implements OnInit {
+export class LogSensorPage {
 
-  private valorObtenido:number=0;
   public idDispositivo:String;
   public medicionArray:Medicion[];
-
-
 
   constructor(private router:ActivatedRoute, private mServ:MedicionService) { 
 
   }
 
-  ngOnInit() {
-    
-    
-  }
-
   async ionViewWillEnter() {
+    // Tomo el Id del dispositivo por argumento
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
+    // Hago consulta para traerme todos los logs
     this.medicionArray = await this.mServ.getMedicionesByIdDispositivo(this.idDispositivo);
-    console.log(this.idDispositivo)
-    console.log(this.medicionArray.length)
-
   }
 
 
