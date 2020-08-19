@@ -143,16 +143,19 @@ sleep 5
 echo "Creando red"
 docker network create --driver bridge mysql-net
 sleep 5
-echo "Inicializando compilador de Typescript"
+#echo "Inicializando compilador de Typescript"
 #./src/compile_ts.sh ./src ./js &
-sleep 5
+#sleep 5
 echo "Inicializando base de datos"
-./start_mysql.sh mysql-net "$PWD"/db &
+./Node/start_mysql.sh mysql-net "$PWD"/Node/db &
 sleep 5
 echo "Inicializando PHPMyAdmin"
-./run_phpadmin.sh mysql-net mysql-server $PUERTO_PHP &
+./Node/run_phpadmin.sh mysql-net mysql-server $PUERTO_PHP &
 sleep 5
 echo "Inicializando NodeJS"
-./serve_node_app_net.sh "$PWD" ./index.js $PUERTO_JS mysql-net &
-#sleep 5
+./Node/serve_node_app_net.sh "$PWD"/Node ./Node/index.js $PUERTO_JS mysql-net &
+sleep 5
+echo "Inicializando Ionic"
+cd ./Ionic
+ionic serve
 #xdg-open http://localhost:$PUERTO_JS &
