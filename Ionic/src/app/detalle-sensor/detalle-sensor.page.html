@@ -12,12 +12,12 @@
 <ion-content>
   <div id="highcharts" style="width:100%; height:300px;"></div>
   <ion-item> 
-  <ion-button expand="block" fill="outline" (click)='switchEV()'>{{Accionar_EV}} Electroválvula</ion-button>
+  <ion-button expand="block" fill="outline" (click)='switchEV()' [appResaltarBoton]="color">{{Accionar_EV}} Electroválvula</ion-button>
 </ion-item>
 <ion-item routerLink="/log-sensor/{{this.idDispositivo}}" routerDirection="root"> 
-  <ion-button expand="block" fill="outline" >Ver Log Sensor</ion-button>
+  <ion-button expand="block" fill="outline" [appResaltarBoton]="color">Ver Log Sensor</ion-button>
 </ion-item>
 <ion-item routerLink="/log-ev/{{this.idDispositivo}}" routerDirection="root"> 
-  <ion-button expand="block" fill="outline" >Ver Log Electroválvula</ion-button>
+  <ion-button expand="block" fill="outline" [appResaltarBoton]="color">Ver Log Electroválvula</ion-button>
 </ion-item>
 </ion-content>

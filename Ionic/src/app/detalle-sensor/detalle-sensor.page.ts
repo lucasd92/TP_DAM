@@ -41,7 +41,7 @@ export class DetalleSensorPage implements OnInit {
     let current_datetime = new Date()
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
     this.valorObtenido = Math.round(Math.random()*100);
-
+    console.log(formatted_date);
     if(this.Accionar_EV == 'Abrir'){
       // Invierto estado del botón
       this.Accionar_EV = 'Cerrar';
@@ -70,7 +70,7 @@ export class DetalleSensorPage implements OnInit {
       this.Estado_EV = 0;
     else
       this.Estado_EV = 1;
-
+    console.log(this.riego.electrovalvulaId);
     let r : Riego = new Riego(99,formatted_date,this.Estado_EV,this.riego.electrovalvulaId);
 
     this.rServ.agregarRiego(r);

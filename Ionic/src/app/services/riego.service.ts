@@ -25,7 +25,7 @@ export class RiegoService {
   };
 
   agregarRiego(riego:Riego){
-    return this._http.post(this.urlApi+"/api/riego/agregar",{fecha:riego.fecha,valor:riego.apertura,dispositivoId: riego.electrovalvulaId}).toPromise().then((result)=>{
+    return this._http.post(this.urlApi+"/api/riego/agregar",{fecha:riego.fecha,valor:riego.apertura,electrovalvulaId: riego.electrovalvulaId}).toPromise().then((result)=>{
       return result;
     });
   }
