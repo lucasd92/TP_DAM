@@ -9,7 +9,7 @@ export class ResaltarBotonDirective {
   constructor(private el:IonButton) { }
 
   @HostListener('mouseenter') onMouseEnter(){
-    this.resaltar( 'success');
+    this.resaltar( "success");
   }
 
   @HostListener('mouseleave') onMouseLeave(){

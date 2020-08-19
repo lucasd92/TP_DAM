@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DetalleSensorPageRoutingModule } from './detalle-sensor-routing.module';
+import { ResaltarBotonDirective } from '../directives/resaltar-boton.directive';
 
 import { DetalleSensorPage } from './detalle-sensor.page';
 
@@ -15,6 +16,6 @@ import { DetalleSensorPage } from './detalle-sensor.page';
     IonicModule,
     DetalleSensorPageRoutingModule
   ],
-  declarations: [DetalleSensorPage]
+  declarations: [DetalleSensorPage,ResaltarBotonDirective]
 })
 export class DetalleSensorPageModule {}

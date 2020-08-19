@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DispositivoPageRoutingModule } from './dispositivo-routing.module';
+import { ResaltarBotonDirective } from '../directives/resaltar-boton.directive';
 
 import { DispositivoPage } from './dispositivo.page';
 
@@ -15,6 +16,6 @@ import { DispositivoPage } from './dispositivo.page';
     IonicModule,
     DispositivoPageRoutingModule
   ],
-  declarations: [DispositivoPage]
+  declarations: [DispositivoPage,ResaltarBotonDirective]
 })
 export class DispositivoPageModule {}
