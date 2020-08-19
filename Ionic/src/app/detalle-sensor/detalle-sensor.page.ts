@@ -38,8 +38,11 @@ export class DetalleSensorPage implements OnInit {
   }
 
   async switchEV(){
+    //Calculo la fecha
     let current_datetime = new Date()
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
+    
+    // Calculo valor aleatorio entre 0 y 100
     this.valorObtenido = Math.round(Math.random()*100);
     console.log(formatted_date);
     if(this.Accionar_EV == 'Abrir'){
@@ -66,11 +69,14 @@ export class DetalleSensorPage implements OnInit {
         }
       }]});
     }
+
+    //Invierto estado de electroválvula
     if(this.Estado_EV)
       this.Estado_EV = 0;
     else
       this.Estado_EV = 1;
-    console.log(this.riego.electrovalvulaId);
+
+    // loggeo cambio en la tabla
     let r : Riego = new Riego(99,formatted_date,this.Estado_EV,this.riego.electrovalvulaId);
 
     this.rServ.agregarRiego(r);
@@ -78,8 +84,6 @@ export class DetalleSensorPage implements OnInit {
   }
 
   async ionViewWillEnter() {
-    // Asigno un objeto por si la tabla no está poblada
-    //this.riego = new Riego(99,99,0,1);
     //Para un determinado ID
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
     // Busco la última medición
@@ -94,7 +98,7 @@ export class DetalleSensorPage implements OnInit {
     // Veo estado de EV según último Log
     this.Estado_EV = this.riego.apertura;
     
-    // Si está abierta, la acción del botń es cerrar
+    // Si está abierta, la acción del botoń es cerrar
     if(this.Estado_EV)
       this.Accionar_EV = 'Cerrar';
     else
@@ -113,10 +117,6 @@ export class DetalleSensorPage implements OnInit {
     }]});
 
 
-
-  }
-  
-  ionViewDidEnter() {
 
   }
 

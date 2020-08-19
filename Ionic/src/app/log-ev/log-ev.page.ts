@@ -8,28 +8,21 @@ import { RiegoService } from '../services/riego.service';
   templateUrl: './log-ev.page.html',
   styleUrls: ['./log-ev.page.scss'],
 })
-export class LogEvPage implements OnInit {
+export class LogEvPage {
 
 
   public idDispositivo:String;
   public riegoArray:Riego[];
 
-
-
   constructor(private router:ActivatedRoute, private mServ:RiegoService) { 
 
   }
 
-  ngOnInit() {
-    
-    
-  }
-
   async ionViewWillEnter() {
+    // Tomo el Id del dispositivo por argumento
     this.idDispositivo = this.router.snapshot.paramMap.get('id');
+    // Hago consulta a la tabla para traer todos los logs de riegos de este dispositivo
     this.riegoArray = await this.mServ.getRiegosByIdDispositivo(this.idDispositivo);
-    console.log(this.idDispositivo)
-    console.log(this.riegoArray.length)
 
   }
 
